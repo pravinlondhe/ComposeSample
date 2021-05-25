@@ -27,6 +27,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NewsStory()
+//            CardFacepaint(painter = painterResource(id = R.drawable.facepaint), title = "Joker is here", contentDesc = "Joker is here")
         }
     }
 
@@ -49,7 +50,8 @@ class MainActivity : ComponentActivity() {
                 painter = painterResource(id = R.drawable.facepaint),
                 null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(120.dp, 120.dp)
+                modifier = Modifier
+                    .size(120.dp, 120.dp)
                     .clip(
                         CircleShape
                     )
