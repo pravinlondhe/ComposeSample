@@ -36,36 +36,6 @@ class MainActivity : ComponentActivity() {
         Text(GREETING, color = Color.Cyan)
     }
 
-    @Preview
-    @Composable
-    fun NewsStory() {
-        Row(
-            modifier = Modifier
-                .padding(Dp(8f))
-                .fillMaxSize(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Image(
-                painter = painterResource(id = R.drawable.facepaint),
-                null,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(120.dp, 120.dp)
-                    .clip(
-                        CircleShape
-                    )
-            )
-            Spacer(Modifier.size(16.dp))
-            Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.SpaceEvenly) {
-                Text("heading",fontSize = 18.sp, )
-                Text("Body", modifier = Modifier.padding(top = 8.dp, bottom = 8.dp), fontSize = 14.sp)
-                Text("Message Message Message \n Message Message Message Message")
-                Text("End lines End lines End lines")
-            }
-        }
-    }
-
     companion object {
         const val GREETING = "Hello Compose world"
     }
