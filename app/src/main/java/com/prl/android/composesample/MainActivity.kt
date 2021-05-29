@@ -23,7 +23,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TestState()
+            TestScaffold()
+//            TestState()
 //            TextStyle()
 //            NewsStory()
 //            CardFacepaint(painter = painterResource(id = R.drawable.facepaint), title = "Joker is here", contentDesc = "Joker is here")
