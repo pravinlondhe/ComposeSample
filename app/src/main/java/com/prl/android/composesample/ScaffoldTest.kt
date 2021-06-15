@@ -18,14 +18,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 
 @Preview(showBackground = true)
 @Composable
 fun TestScaffoldTemplate() {
-    val scaffoldState = rememberScaffoldState()
+    val scaffoldState =
+        rememberScaffoldState(rememberDrawerState(initialValue = DrawerValue.Closed))
     var bottomItemSelected by remember {
         mutableStateOf(1)
     }
+    val coroutineScope = rememberCoroutineScope()
     Scaffold(topBar = {
         TopAppBar(elevation = 8.dp,
             title = {
@@ -36,7 +39,13 @@ fun TestScaffoldTemplate() {
                     Icons.Default.DoubleArrow,
                     contentDescription = "",
                     Modifier.clickable {
-
+                        coroutineScope.launch {
+                            if (DrawerValue.Closed == scaffoldState.drawerState.currentValue) {
+                                scaffoldState.drawerState.open()
+                            } else {
+                                scaffoldState.drawerState.close()
+                            }
+                        }
                     }
                 )
             },
@@ -109,20 +118,22 @@ fun TestScaffoldTemplate() {
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /*TODO*/ },
-                backgroundColor = Color.Blue
-            ) {
+                onClick = {
+                    coroutineScope.launch {
+                        scaffoldState.snackbarHostState.showSnackbar("Floating button clicked")
+                    }
+                },
+                backgroundColor = Color.Blue,
+
+                ) {
                 Text("+", color = Color.White)
             }
         },
         floatingActionButtonPosition = FabPosition.Center,
         scaffoldState = scaffoldState,
         drawerContent = {
-            Column {
-                Text("Item 1")
-                Text("Item 2")
-                Text("Item 3")
-                Text("Item 4")
+            for (i in 1..4) {
+                Text("Item $i")
             }
         }) {
 
