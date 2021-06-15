@@ -6,13 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-//            ListUsingLazyRow()
-            ListUsingRow()
+            ListUsingLazyRow()
+//            ListUsingRow()
 //            ListUsingLazyColumn()
 //            ListUsingColumn()
 //            TestScaffold()
@@ -23,6 +24,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @Preview(showSystemUi = true, showBackground = true)
     @Composable
     fun Greetings() {
         Text(GREETING, color = Color.Cyan)
